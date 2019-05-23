@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/1.0.26">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.1</TargetFramework>
+    <PackageProjectUrl>https://github.com/binki/DirectConneX.CefSharp.SuppressAnyCpuBuildError</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/binki/DirectConneX.CefSharp.SuppressAnyCpuBuildError</RepositoryUrl>
+    <Description>Suppress the AnyCPU error made by CefSharp’s buildsystem which interrupts a workflow where the AnyCPU workaround is implemented in one project which is consumed by another project. In this situation, it does not make sense for the final executable project to set the CefSharpAnyCpuSupport property because it doesn’t even need to be aware that it is consuming CefSharp.</Description>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="build/$(MSBuildProjectName).props" />
+  </ItemGroup>
+</Project>
