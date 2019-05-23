@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.Build.NoTargets/1.0.26">
+<?xml version="1.0"?>
+<Project Sdk="Microsoft.Build.NoTargets/1.0.26">
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <PackageProjectUrl>https://github.com/binki/DirectConneX.CefSharp.SuppressAnyCpuBuildError</PackageProjectUrl>
@@ -7,6 +8,8 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="build/$(MSBuildProjectName).props" />
+    <Content Include="build/$(MSBuildProjectName).props">
+      <PackagePath>%(RelativeDir)</PackagePath>
+    </Content>
   </ItemGroup>
 </Project>
