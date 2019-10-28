@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+      It is random, but sometimes VS just won’t load the .props files
+      for nugets. So we have to force a project reload using the trick
+      of touching the project file and make an error to mask the error
+      that CefSharp.Common.targets would otherwise emit. See
+      https://github.com/binki/DirectConneX.CefSharp.SuppressAnyCpuBuildError/issues/1
+
+      Regarding BeforeTargets: PlatformCheck is the name of the target
+      in CefSharp.Common.targets that explodes (at least in
+      73.1.130). We also include BeforeResolveAssemblyReferences which
+      should run before PlatformCheck just in case the target name
+      changes.
+  -->
+  <Target
+      BeforeTargets="PlatformCheck;BeforeResolveReferences"
+      Condition=" '$(CefSharpAnyCpuSupport)' != 'true' "
+      Name="DirectConneX_CefSharp_SuppressAnyCpuBuildError_ForceReloadIfPropsNotLoaded">
+    <!--
+        Trigger VS to request the user to reload the project. That
+        generally fixes this issue.
+    -->
+    <Touch
+        AlwaysCreate="false"
+        Files="$(MSBuildProjectFile)"
+        ForceTouch="true"/>
+    <!--
+        Show our own error to mask the error that
+        CefSharp.Common.targets would show. Hopefully the user sees
+        our error instead of CefSharp.Common.targets’s so that the
+        user doesn’t try to modify their project file unnecessarily.
+    -->
+    <Error
+        Text="NuGet .props files are not loading. A project file reload is required. Visual Studio will prompt you to reload the project. You must agree."/>
+  </Target>
+</Project>

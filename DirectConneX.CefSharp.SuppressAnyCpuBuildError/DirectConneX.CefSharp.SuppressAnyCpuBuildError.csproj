@@ -12,5 +12,8 @@
     <Content Include="build/$(MSBuildProjectName).props">
       <PackagePath>%(RelativeDir)</PackagePath>
     </Content>
+    <Content Include="build/$(MSBuildProjectName).targets">
+      <PackagePath>%(RelativeDir)</PackagePath>
+    </Content>
   </ItemGroup>
 </Project>
