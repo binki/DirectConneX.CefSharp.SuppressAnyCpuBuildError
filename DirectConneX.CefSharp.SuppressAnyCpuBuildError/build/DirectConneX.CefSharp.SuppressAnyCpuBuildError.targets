@@ -32,6 +32,6 @@
         user doesn’t try to modify their project file unnecessarily.
     -->
     <Error
-        Text="NuGet .props files are not loading. A project file reload is required. Visual Studio will prompt you to reload the project. You must agree."/>
+        Text="NuGet .props files are not loading. A project file reload is required. Visual Studio will prompt you to reload the project. You may need to restart Visual Studio to get past this error."/>
   </Target>
 </Project>
